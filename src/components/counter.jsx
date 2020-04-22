@@ -3,7 +3,19 @@ import React, { Component } from "react";
 class Counter extends Component {
   state = {
     count: 5,
+    tags: ["tag1", "tag2", "tag3"],
   };
+
+  tagsArray() {
+    if (this.state.tags.length == 0) return <p>The List is empty</p>;
+    return (
+      <ul>
+        {this.state.tags.map((tag) => (
+          <li key={tag}>{tag}</li>
+        ))}
+      </ul>
+    );
+  }
 
   render() {
     return (
@@ -12,6 +24,10 @@ class Counter extends Component {
           {this.formateCount()}
         </span>
         <button className="btn btn-secondary btn-sm">Increment</button>
+        <div>
+          {this.state.tags.length == 0 && "Please cerate a list "}
+          {this.tagsArray()}
+        </div>
       </div>
     );
   }
